@@ -30,7 +30,8 @@ class PluginManager(object):
         else:
             res = {}
             for plugin in self.plugins:
-                res[plugin] = self.plugins[plugin].process(value)
+                if (hasattr(self.plugins[plugin], 'process')):
+                    res[plugin] = self.plugins[plugin].process(value)
             return res
 
 instance = PluginManager()
